@@ -4582,7 +4582,8 @@ function attack {
 	killall dhcpd &> $flux_output_device
 	fuser -n tcp -k 53 67 80 &> $flux_output_device
 	fuser -n udp -k 53 67 80 &> $flux_output_device
-
+	
+	#Error Here - Can't open DHCP Terminal
 	xterm -bg black -fg green $TOPLEFT -T DHCP -e "dhcpd -d -f -lf "$DUMP_PATH/dhcpd.leases" -cf "$DUMP_PATH/dhcpd.conf" $interfaceroutear 2>&1 | tee -a $DUMP_PATH/clientes.txt" &
 	xterm $BOTTOMLEFT -bg "#000000" -fg "#99CCFF" -title "FAKEDNS" -e "if type python2 >/dev/null 2>/dev/null; then python2 $DUMP_PATH/fakedns; else python $DUMP_PATH/fakedns; fi" &
 
